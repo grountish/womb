@@ -24,6 +24,7 @@ export default {
 
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
+	plugins: ['~/plugins/preview.client.js'],
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
 	css: ['assets/css/tailwind.css'],
