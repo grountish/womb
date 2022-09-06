@@ -18,5 +18,11 @@ export default {
 		urlFor(source) {
 			return this.builder.image(source)
 		},
+		select(selector){
+			return document.querySelector(selector)
+		},
+		selectAll(selector){
+			return document.querySelectorAll(selector)
+		},
 	},
 }

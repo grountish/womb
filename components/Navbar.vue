@@ -1,74 +1,45 @@
 <template>
-  <nav
-    :class="[
-      toggle ? 'bg-primaryGreen' : 'bg-white',
-      'top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1  lg:px-10 xl:pr-12 Copernicus  sm:Haffer',
-    ]"
-  >
+  <nav :class="[toggle ? 'bg-primaryGreen' : 'bg-white', 'top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1  lg:px-10 xl:pr-12 Copernicus  sm:Haffer']">
     <div class="flex items-center flex-shrink-0 mr-6 lg:ml-4">
       <NuxtLink to="/">
-        <img
-          src="/logo.svg"
-          alt="logo-sapunta"
-          :class="[toggle && 'filter invert lg:invert-0', 'w-40 my-6 lg:w-32']"
-        />
+        <SanityImage :asset-id="logo.asset._ref" class="w-20 h-auto mx-3 my-4" auto="format" />
       </NuxtLink>
     </div>
 
     <div :class="[toggle ? 'sm:circleMenu' : 'sm:circleMenu2']">
       <div class="block lg:hidden">
         <input type="checkbox" id="overlay-input" />
-        <label for="overlay-input" @click="toggleNav" id="overlay-button"
-          ><span :class="[toggle ? 'white ' : 'black']"></span
-        ></label>
+
+        <label for="overlay-input" @click="toggleNav" id="overlay-button">
+          <span :class="[toggle ? 'white ' : 'black']"></span>
+        </label>
+
         <title>Index</title>
       </div>
     </div>
 
-    <div
-      :class="[
-        toggle ? 'h-screen' : 'h-0',
-        'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-0 items-center',
-      ]"
-      id="nav-content"
-    >
-      <ul
-        id="link-list"
-        :class="[
-          linkse ? ' opacity-100 ' : ' opacity-0 hidden  ',
-          'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
-        ]"
-      >
+    <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-0 items-center']" id="nav-content">
+      <ul id="link-list" :class="[linkse ? ' opacity-100 ' : ' opacity-0 hidden  ', 'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ']">
         <div class="grid lg:flex">
           <li>
-            <NuxtLink
-              to="/"
-              class="relative inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 sm:underlinedWhite"
-              >Home</NuxtLink
-            >
+            <NuxtLink to="/" class="relative inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 sm:underlinedWhite"> Home </NuxtLink>
+          </li>
+
+          <li>
+            <NuxtLink to="/animations" class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"> Animations </NuxtLink>
           </li>
           <li>
-            <NuxtLink
-              to="/animations"
-              class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"
-              >Animations</NuxtLink
-            >
+            <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"> Gallery </NuxtLink>
           </li>
-           
+
           <li class="hidden lg:inline">
             <NuxtLink to="/">
-              <img
-                src="/personlogo.svg"
-                alt="personlogo"
-                class="w-6 mx-auto my-2 mt-1 lg:mx-8"
-              />
+              <img src="/personlogo.svg" alt="personlogo" class="w-6 mx-auto my-2 mt-1 lg:mx-8" />
             </NuxtLink>
           </li>
         </div>
 
-        <ButtonBase typeBtn="primary" class="hidden lg:inline">
-          Partner with us
-        </ButtonBase>
+        <ButtonBase typeBtn="primary" class="hidden lg:inline"> Partner with us </ButtonBase>
       </ul>
     </div>
   </nav>
@@ -76,15 +47,24 @@
 
 <script>
 import ButtonBase from './ButtonBase.vue'
+import { groq } from '@nuxtjs/sanity'
+const query = groq`*[_type=="settings"]`
 
 export default {
-  components: { ButtonBase },
+  components: {
+    ButtonBase,
+  },
   data: () => ({
+    logo: '',
     toggle: false,
     xtraLinks: '',
     linkse: false,
     reach: true,
   }),
+  async fetch() {
+    const queryData = await this.$sanity.fetch(query)
+    this.logo = queryData[0].logo
+  },
   methods: {
     toggleNav() {
       this.toggle = !this.toggle
@@ -95,7 +75,6 @@ export default {
           }, 300)
     },
     clickAndClose() {
-      let nav = document.getElementsByTagName('ul')[0]
       let lis = document.getElementsByTagName('li')
       let burger = document.getElementById('overlay-button')
       ;[...lis].forEach((x) =>
@@ -303,7 +282,8 @@ input[type='checkbox']:checked ~ #overlay-button span:before {
 input[type='checkbox']:checked ~ #overlay-button span:after {
   transform: rotate(-45deg) translate(0px, 0px);
 }
-.text-nav{
-	font-size: 2.74rem;
+.text-nav {
+  font-size: 2.74rem;
 }
 </style>
+

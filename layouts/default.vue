@@ -1,7 +1,7 @@
 <template>
-  <div class="grid overflow-x-hidden">
+  <div class="grid overflow-x-hidden min-h-screen">
     <Navbar />
-    <Nuxt class="pb-12 " />
+    <Nuxt class="pt-16" />
   </div>
 </template>
 <script>
