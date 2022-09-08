@@ -7,8 +7,12 @@ import blockContent from './objects/blockContent'
 import hero from './objects/hero'
 import galleryItem from './objects/galleryItem'
 import media from './objects/media'
+import secondSection from './objects/secondSection'
+import button from './objects/button'
+import project from './documents/project'
+import category from './objects/category'
 
 export default createSchema({
 	name: 'default',
-	types: schemaTypes.concat([hero, media, galleryItem, gallery, home, settings, blockContent]),
+	types: schemaTypes.concat([hero, media, button, project, category, secondSection, galleryItem, gallery, home, settings, blockContent]),
 })

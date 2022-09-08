@@ -1,31 +1,15 @@
 <template>
-
-	<button
-		:href="url"
-		:class="[
-			'rounded-full border lg:px-6 px-4 py-3 text-sm hover:shadow-xl scaleUp',
-			typeBtn == 'primary'
-				? 'bg-primaryGreen text-white'
-				: typeBtn == 'secondary'
-				? 'bg-primaryBlue'
-				: typeBtn == 'empty'
-				? 'bg-transparent border-2 border-black'
-				: 'bg-black text-white',
-		]"
-	>
-
-		<slot class=""></slot>
-
-	</button>
-
+  <a :href="url" class="w-full">
+    <button :class="['rounded-lg border lg:px-3 px-4 py-1 text-xl hover:scale-90 scaleUp w-full', typeBtn == 'primary' ? 'bg-primaryGreen text-white' : typeBtn == 'secondary' ? 'bg-primaryBlue' : typeBtn == 'empty' ? 'bg-transparent border-2 border-black' : 'text-black bg-white']">
+      <slot class="text-4xl"></slot>
+    </button>
+  </a>
 </template>
 
 <script>
 export default {
-	props: ['typeBtn', 'url'],
+  props: ['typeBtn', 'url'],
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

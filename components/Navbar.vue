@@ -1,5 +1,5 @@
 <template>
-  <nav :class="[toggle ? 'bg-primaryGreen' : 'bg-white', 'top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1  lg:px-10 xl:pr-12 Copernicus  sm:Haffer']">
+  <nav :class="[toggle ? 'bg-primaryGreen' : 'bg-transparent', 'fixed top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1  lg:px-10 xl:pr-12 Copernicus  sm:Haffer']">
     <div class="flex items-center flex-shrink-0 mr-6 lg:ml-4">
       <NuxtLink to="/">
         <SanityImage :asset-id="logo.asset._ref" class="w-20 h-auto mx-3 my-4" auto="format" />
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-0 items-center']" id="nav-content">
+    <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-8 items-center']" id="nav-content">
       <ul id="link-list" :class="[linkse ? ' opacity-100 ' : ' opacity-0 hidden  ', 'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ']">
         <div class="grid lg:flex">
           <li>
@@ -32,14 +32,33 @@
             <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"> Gallery </NuxtLink>
           </li>
 
-          <li class="hidden lg:inline">
-            <NuxtLink to="/">
-              <img src="/personlogo.svg" alt="personlogo" class="w-6 mx-auto my-2 mt-1 lg:mx-8" />
+          <li>
+            <NuxtLink to="/animations" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+              <div class="flex flex-col w-28 text-left">
+                <span class="mr-auto text-white">PROJECTS</span>
+                <h4 class="text-xxs text-gray-700">A vast range of projects</h4>
+              </div>
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+              <div class="flex flex-col text-left">
+                <span class="mr-auto text-white">Partners</span>
+                <h4 class="text-xxs text-gray-700 w-28">Our diverse</h4>
+                <h4 class="text-xxs text-gray-700">network of collaborators</h4>
+              </div></NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+              <div class="flex flex-col text-left">
+                <span class="mr-auto text-white">About</span>
+                <h4 class="text-xxs text-gray-700 w-28">Learn more</h4>
+                <h4 class="text-xxs text-gray-700">about our process</h4>
+              </div>
             </NuxtLink>
           </li>
         </div>
-
-        <ButtonBase typeBtn="primary" class="hidden lg:inline"> Partner with us </ButtonBase>
       </ul>
     </div>
   </nav>
@@ -88,41 +107,14 @@ export default {
     if (process.client) {
       window.innerWidth < 1000 && this.clickAndClose()
     }
-    let lastScrollTop = 30
-    let nav = document.getElementsByTagName('nav')[0]
-
-    document.addEventListener(
-      'scroll',
-      () => {
-        let st = window.pageYOffset || document.documentElement.scrollTop
-        if (st == 0) {
-          nav.classList.add('transparent')
-        }
-        if (st > lastScrollTop) {
-          nav.classList.remove('is-floating')
-          nav.classList.add('is-not')
-        }
-        if (st < lastScrollTop && st > 0) {
-          nav.classList.remove('is-not')
-          nav.classList.add('is-floating')
-        }
-        if (st == 0) {
-          nav.classList.add('transparent')
-          nav.classList.remove('is-floating')
-          this.reach = true
-        }
-        if (st != 0) {
-          this.reach = false
-        }
-        lastScrollTop = st <= 0 ? 0 : st
-      },
-      false
-    )
   },
 }
 </script>
 
 <style>
+.text-xxs {
+  font-size: 0.5rem;
+}
 #nav-content {
   transition: all 0.31s;
 }
@@ -155,22 +147,16 @@ export default {
 .is-not {
   opacity: 0;
 }
-@media only screen and (max-width: 600px) {
-  nav li {
-    font-family: 'Haffer';
-  }
-}
-@media only screen and (min-width: 600px) {
-  nav li {
-    font-family: 'Copernicus';
-  }
-}
+
 nav {
   transition: all 0.5s;
   position: fixed;
   top: 0;
+  
 }
-
+nav * {
+  font-family: sans-serif;
+}
 .transparent {
   background: white;
 }

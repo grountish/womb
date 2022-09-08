@@ -1,5 +1,3 @@
-const isDev = process.env.NODE_ENV === 'development'
-const useEmulators = false // manually change if emulators needed
 
 export default {
 	// Global page headers (https://go.nuxtjs.dev/config-head)
@@ -44,8 +42,8 @@ export default {
 		optimizeImages: true,
 	},
 	serverMiddleware: {
-		'/api': '~/api'
-	  },
+		'/api': '~/api',
+	},
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
 		// https://go.nuxtjs.dev/axios
@@ -63,9 +61,6 @@ export default {
 			},
 		],
 	],
-	optimizedImages: {
-		optimizeImages: true,
-	},
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)
 	axios: {},
 	build: {

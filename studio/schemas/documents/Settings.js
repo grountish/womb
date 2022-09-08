@@ -1,5 +1,4 @@
 export default {
- 
 	name: 'settings',
 	title: 'Settings',
 	type: 'document',
@@ -16,9 +15,24 @@ export default {
 			type: 'string',
 		},
 		{
+			title: 'Circle Logo',
+			name: 'circleLogo',
+			type: 'image',
+		},
+		{
 			title: 'Logo',
 			name: 'logo',
 			type: 'image',
+		},
+		{
+			title: 'contact',
+			name: 'contact',
+			type: 'button',
+		},
+		{
+			title: 'instagram',
+			name: 'instagram',
+			type: 'button',
 		},
 		{
 			title: 'ContactInfo',
