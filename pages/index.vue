@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <!-- section 1  -->
-    <div class="flex flex-col h-screen ">
+    <div class="flex flex-col h-screen">
       <div class="static" style="height: 70vh; overflow: hidden">
         <video playsinline autoplay muted loop id="bgvideo">
           <source :src="page.section1.blocks.video" type="video/mp4" />
@@ -14,7 +14,7 @@
     </div>
 
     <!-- section 2 -->
-    <div class="flex flex-col min-h-screen p-4 ">
+    <div class="flex flex-col min-h-screen p-4">
       <div class="flex w-full">
         <div v-for="article in page.section2.collection" :key="article.id" class="flex-1 flex-col m-4 fadeIn">
           <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(article.image.asset._ref) + ')' }"></div>
@@ -25,14 +25,41 @@
         </div>
       </div>
     </div>
+    <!-- section 3 -->
+    <div class="flex flex-col min-h-screen p-4">
+      <h4 class="text-xs uppercase font-mono">
+        {{ page.section3.blocks.topHeader.text }}
+      </h4>
+      <h1 class="text-5xl font-black">
+        {{ page.section3.blocks.header }}
+      </h1>
+      <div class="flex w-full">
+        <NuxtLink v-for="project in page.section3.projects" :key="project.id" :to="'projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
+          <div class="flex h-120 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
+            <div v-for="(category, i) in project.categories" :key="category.id" class="absolute top-4 border border-white  h-3 w-3 bg-red-500 rounded-full" :style="{   left: 5+ i*10 + 'px' }"></div>
+          </div>
+          <div class="flex flex-col space-y-3">
+            <h1 class="font-black py-4 text-xl leading-none text-left">{{ project.title }}</h1>
+            <div class="flex space-x-3">
+              <h4 v-for="category in project.categories" :key="category.id" class="font-mono text-xs uppercase">
+                {{ category.title }}
+              </h4>
+            </div>
+            <SanityContent :blocks="project.information" />
+          </div>
+        </NuxtLink>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { groq } from '@nuxtjs/sanity'
+
 const query = groq`{
 "section1":*[_type=="home"][0]{blocks[0]{...,"video":media.video.asset->url}},
-"section2":*[_type=="home"][0]{"collection":blocks[1].collection}}
+"section2":*[_type=="home"][0]{"collection":blocks[1].collection},
+"section3":*[_type=="home"][0]{blocks[2]}{...,"projects": blocks.projects[]->{...,categories[]->}}}
 `
 
 import general from '../mixins/general'
