@@ -6,8 +6,9 @@ import gallery from './documents/gallery'
 import blockContent from './objects/blockContent'
 import hero from './objects/hero'
 import galleryItem from './objects/galleryItem'
+import media from './objects/media'
 
 export default createSchema({
 	name: 'default',
-	types: schemaTypes.concat([hero, galleryItem, gallery, home, settings, blockContent]),
+	types: schemaTypes.concat([hero, media, galleryItem, gallery, home, settings, blockContent]),
 })
