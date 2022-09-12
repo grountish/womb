@@ -38,9 +38,6 @@ export default {
 		'nuxt-build-optimisations',
 		'@aceforth/nuxt-optimized-images',
 	],
-	optimizedImages: {
-		optimizeImages: true,
-	},
 	serverMiddleware: {
 		'/api': '~/api',
 	},
