@@ -7,14 +7,13 @@
                     <source :src="page.section1.blocks.video" type="video/mp4" />
                 </video>
             </div>
-
             <div class="flex flex-1 h-full">
                 <p class="font-black text-4xl p-4 leading-none text-justify">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
 
         <!-- section 2 -->
-        <div class="flex flex-col px-4 py-20">
+        <div class="flex flex-col px-4 py-2">
             <div class="flex w-full">
                 <div v-for="article in page.section2.collection" :key="article.id" class="flex-1 flex-col m-4 fadeIn">
                     <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(article.image.asset._ref) + ')' }"></div>
@@ -33,7 +32,7 @@
             </h1>
             <div class="flex w-full">
                 <NuxtLink v-for="project in page.section3.projects" :key="project.id" :to="'projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
-                    <div class="flex h-120 bg-cover bg-center rounded-3xl relative " :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
+                    <div class="flex h-120 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
                         <div
                             v-for="(category, i) in project.categories"
                             :key="category.id"
@@ -55,10 +54,10 @@
         </div>
         <!-- section 4 -->
         <div class="flex flex-col px-4 py-20">
-            <div class="flex-1 flex-col m-4 fadeIn">
+            <div class="flex-1 flex-col my-4 fadeIn">
                 <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(page.section4.blocks.articles.image.asset._ref) + ')' }"></div>
                 <div class="flex flex-col">
-                    <h1 class="font-black p-4 text-4xl leading-none text-justify">{{ page.section4.blocks.articles.header }}</h1>
+                    <h1 class="font-black py-4 text-4xl leading-none text-justify">{{ page.section4.blocks.articles.header }}</h1>
                     <p class="">{{ page.section4.blocks.articles.text }}</p>
                 </div>
             </div>

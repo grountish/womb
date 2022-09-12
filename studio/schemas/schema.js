@@ -10,9 +10,11 @@ import media from './objects/media'
 import secondSection from './objects/secondSection'
 import button from './objects/button'
 import project from './documents/Project'
+import partners from './documents/Partners'
 import category from './objects/category'
+import partner from './objects/partner'
 
 export default createSchema({
 	name: 'default',
-	types: schemaTypes.concat([hero, media, button, project, category, secondSection, galleryItem, gallery, home, settings, blockContent]),
+	types: schemaTypes.concat([hero, media, button, project, category, secondSection, galleryItem, partners, partner, gallery, home, settings, blockContent]),
 })

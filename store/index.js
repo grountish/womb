@@ -1,10 +1,14 @@
 export const state = () => ({
 	settings: null,
+	mainTheme: 'black',
 })
 
 export const mutations = {
 	SET_settings(state, settings) {
 		state.settings = settings
+	},
+	SET_mainTheme(state, mainTheme) {
+		state.mainTheme = mainTheme
 	},
 }
 export const actions = {
