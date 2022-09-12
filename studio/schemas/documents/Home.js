@@ -106,7 +106,53 @@ export default {
 					preview: {
 						prepare() {
 							return {
-								title: `Second Section`,
+								title: `Third Section`,
+							}
+						},
+					},
+				},
+				{
+					name: 'fourthSection',
+					title: 'Fourth Section',
+					type: 'object',
+					fields: [
+						// {
+						// 	type: 'reference',
+						// 	name:'project',
+						// 	to: [{ type: 'project' }],
+						// },
+						{
+							name: 'articles',
+							title: 'Article',
+							type: 'object',
+							fields: [
+								{
+									name: 'image',
+									title: 'Image',
+									type: 'image',
+								},
+								{
+									name: 'header',
+									title: 'Header',
+									type: 'text',
+								},
+								{
+									name: 'text',
+									title: 'Text',
+									type: 'text',
+								},
+							],
+						},
+						{
+							name: 'subHeader',
+							title: 'Sub Header',
+							type: 'string',
+						},
+					],
+					preview: {
+						prepare() {
+							return {
+								title: `Fourth Section`,
 							}
 						},
 					},

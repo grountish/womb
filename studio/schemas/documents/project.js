@@ -38,16 +38,46 @@ export default {
 			title: 'Main Media',
 		},
 		{
+			name: 'video',
+			title: 'Video',
+			type: 'file',
+		},
+		{
 			name: 'information',
 			title: 'Information',
 			type: 'blockContent',
 		},
-
 		{
 			name: 'mainSlider',
 			title: 'Main Slider',
 			type: 'array',
-			hidden: ({ document }) => document?.isVideo,
+			of: [
+				{
+					name: 'image',
+					title: 'Add Image',
+					type: 'image',
+				},
+			],
+		},
+		{
+			name: 'author',
+			title: 'Author',
+			type: 'string',
+		},
+		{
+			name: 'quote',
+			title: 'Quote',
+			type: 'text',
+		},
+		{
+			name: 'quoteAuthor',
+			title: 'Quote Author',
+			type: 'string',
+		},
+		{
+			name: 'secondSlider',
+			title: 'Second Slider',
+			type: 'array',
 			of: [
 				{
 					name: 'image',

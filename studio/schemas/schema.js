@@ -9,7 +9,7 @@ import galleryItem from './objects/galleryItem'
 import media from './objects/media'
 import secondSection from './objects/secondSection'
 import button from './objects/button'
-import project from './documents/project'
+import project from './documents/Project'
 import category from './objects/category'
 
 export default createSchema({
