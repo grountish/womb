@@ -2,13 +2,13 @@
     <div class="">
         <!-- section 1  -->
         <div class="flex flex-col h-screen">
-            <div class="static" style="height: 70vh; overflow: hidden">
+            <div class="static" style="height: 70vh; overflow:hidden;">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
                     <source :src="page.section1.blocks.video" type="video/mp4" />
                 </video>
             </div>
             <div class="flex flex-1 h-full">
-                <p class="font-black text-4xl p-4 leading-none text-justify">{{ page.section1.blocks.header }}</p>
+                <p class=" text-4_5xl p-4 heading-1 ">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
         <!-- section 3 -->
         <div class="flex flex-col px-4 py-20">
             <h4 class="text-xs uppercase font-mono flex mr-auto items-center"><span class="text-3xl m-auto pb-1">● </span> {{ page.section3.blocks.topHeader.text }}</h4>
-            <h1 class="text-5xl font-black">
+            <h1 class="text-8xl heading-2">
                 {{ page.section3.blocks.header }}
             </h1>
             <div class="flex w-full">
@@ -61,10 +61,10 @@
                     <p class="">{{ page.section4.blocks.articles.text }}</p>
                 </div>
             </div>
-            <h1 class="text-5xl font-black">
+        </div>
+            <h1 class="text-8xl heading-2 text-center">
                 {{ page.section4.blocks.subHeader }}
             </h1>
-        </div>
     </div>
 </template>
 
@@ -90,9 +90,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-    font-family: Helvetica, sans-serif;
-}
+ 
 .index {
     cursor: initial !important;
 }

@@ -14,18 +14,37 @@ body {
 	/* IE and Edge */
 	scrollbar-width: none;
 	/* Firefox */
+	font-family: 'helveticaheavy';
 }
 
 body::-webkit-scrollbar {
 	display: none;
 }
 
+
 @font-face {
 	font-family: 'Copernicus';
 	src: local('Copernicux'),
-		url(~assets/fonts/Copernicus/Copernicus_Book.otf) format('truetype');
+	url(~assets/fonts/Copernicus/Copernicus_Book.otf) format('truetype');
 }
 
+@font-face {
+	font-family: 'Soehne';
+	src: local('Soehne'),
+		url(~assets/fonts/soehne.otf) format('truetype');
+}
+
+@font-face {
+	font-family: 'helveticaheavy';
+	src: local('helveticaheavy'),
+		url(~assets/fonts/helveticaheavy.otf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Helveticabold';
+	src: local('Helveticabold'),
+		url(~assets/fonts/helveticabold.otf) format('truetype');
+}
 @font-face {
 	font-family: 'Haffer';
 	src: local('Haffer'),
@@ -48,7 +67,15 @@ html {
 	scroll-behavior: smooth;
 
 }
-
+.helvetica-heavy {
+	font-family: 'helveticaheavy';
+}
+.helvetica-bold {
+	font-family: 'Helveticabold';
+}
+.soehne {
+	font-family: 'Soehne';
+}
 .Copernicus {
 	font-family: 'Copernicus';
 }
@@ -76,7 +103,19 @@ li {
 .scene {
 	background-color: '#220022';
 }
-
+.heading-1 {
+	line-height: 2.5rem;
+	letter-spacing: -2px;
+	font-family: "helveticaheavy";
+}
+.heading-2 {
+	line-height: 4.5rem;
+	letter-spacing: -4.8px;
+	font-family: "helveticaheavy";
+}
+.-letter-spacing-2 {
+	letter-spacing: -2px;
+}
 .letter-spaced {
 	letter-spacing: 4px;
 }

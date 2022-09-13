@@ -8,7 +8,7 @@
       </div>
       <div class="relative">
         <div v-for="(element, index) in collection" :key="index" class="absolute w-80" :style="{ top: index + '00px', left: index + '00px' }">
-          <SanityImage :asset-id="element.image.asset._ref" class="absolute" />
+          <SanityImage :asset-id="element.image.asset._ref" class="absolute" format="webp"/>
         </div>
       </div>
     </div>

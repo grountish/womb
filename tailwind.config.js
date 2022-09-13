@@ -248,6 +248,10 @@ module.exports = {
 		},
 
 		extend: {
+			fontSize: {
+				'4_5xl': '2.7rem',
+				'8xl': '4.8rem',
+			},
 			colors: {
 				primaryGreen: '#1C433A',
 				primaryBlue: '#DBE0FA',

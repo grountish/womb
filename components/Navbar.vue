@@ -3,7 +3,7 @@
         <div class="flex items-center flex-shrink-0 mr-6 lg:ml-4">
             <NuxtLink to="/">
                 <!-- set the invert with the color theme -->
-                <SanityImage :asset-id="logo.asset._ref" :class="[$store.state.mainTheme === 'black' && 'invert', 'w-30 h-auto mx-3 my-4']" auto="format" />
+                <SanityImage :asset-id="logo.asset._ref" :class="[$store.state.mainTheme === 'black' && 'invert', 'w-30 h-auto mx-3 my-4']" auto="format" format="webp" />
             </NuxtLink>
         </div>
         <div :class="[toggle ? 'sm:circleMenu' : 'sm:circleMenu2']">
