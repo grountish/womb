@@ -25,7 +25,7 @@ export default {
 	plugins: ['~/plugins/preview.client.js'],
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
-	css: ['assets/css/tailwind.css'],
+	css: ['assets/css/tailwind.css', 'assets/css/variables.css'],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
 	components: true,
