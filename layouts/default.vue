@@ -1,5 +1,5 @@
 <template>
-    <div :class="[$store.state.mainTheme === 'black' ? 'bg-black text-white' : 'bg-green-500 text-black', 'grid overflow-x-hidden   fadeIn']">
+    <div :class="[$store.state.mainTheme === 'black' ? 'bg-black text-white' : 'text-black bg-red-400', 'grid overflow-x-hidden   fadeIn']">
         <Navbar />
         <Nuxt class="" /> 
         <Footer />
