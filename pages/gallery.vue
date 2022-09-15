@@ -1,20 +1,18 @@
 <template>
 	<!-- //TODO reference projects -->
 	<article class="gallery | bg-purple relative">
-		<section class="text-yellow leading-9 pt-28 px-4">
-			<h2 v-for="(element, index) in collection" :key="index" class="text-4xl" @mouseover="mouseOver(index, element)">
-				{{ element.title }}
-			</h2>
+		<section class="text-yellow leading-9 pt-28 px-4 flex flex-col">
+			<div v-for="(element, index) in collection" :key="element._key">
+				<h2 class="inline-block text-4xl cursor-pointer" @mouseenter="mouseEnter(index, element)">
+					{{ element.title }}
+				</h2>
+			</div>
 		</section>
 
 		<section class="images-section | absolute px-4 bottom-16 h-screen w-full md:transform md:-translate-x-4">
-			<figure
-				v-for="(element, index) in collection"
-				:key="index"
-				class="overflow-hidden absolute duration-300"
-				:style="{ bottom: `${index * OFFSET}px`, right: `${index * OFFSET}px`, transform: `scale(${1 - index * SCALE})`, zIndex: `${collection.length - index}` }"
-			>
+			<figure v-for="(element, index) in collection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
 				<SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
+				<figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption>
 			</figure>
 		</section>
 	</article>
@@ -23,8 +21,8 @@
 <script>
 import { groq } from '@nuxtjs/sanity'
 const query = groq`*[_type=="gallery"][0]`
-
 import general from '../mixins/general'
+import { gsap } from 'gsap'
 
 export default {
 	mixins: [general],
@@ -32,9 +30,30 @@ export default {
 		let { collection } = await $sanity.fetch(query)
 		return { collection }
 	},
+	data() {
+		return {
+			isMobile: false,
+			activeProject: 0,
+		}
+	},
 	methods: {
-		mouseOver(index, element) {
-			const imgs = this.selectAll('img')
+		mouseEnter(index, element) {
+			this.activeProject = this.collection.findIndex((img) => img.title === element.title)
+		},
+		renderImage(el, index, setIndex = true) {
+			gsap.killTweensOf(el)
+
+			gsap.to(el, {
+				bottom: index * this.OFFSET,
+				right: index * this.OFFSET,
+				scale: 1 - index * this.SCALE,
+				zIndex: this.collection.length - index,
+				ease: 'power4.out',
+				duration: 0.8,
+				onComplete: () => {
+					if (setIndex) el.setAttribute('data-index', index)
+				},
+			})
 		},
 		checkMobile() {
 			this.isMobile = window.innerWidth < 768
@@ -43,24 +62,57 @@ export default {
 			this.checkMobile()
 		},
 	},
-	data() {
-		return {
-			isMobile: false,
-		}
+	watch: {
+		activeProject() {
+			const activeImage = this.images[this.activeProject]
+			const isSecondImage = Number(activeImage.dataset.index) === 1
+
+			gsap.killTweensOf(activeImage)
+
+			const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 0.4 } })
+
+			if (!isSecondImage) tl.to(activeImage, { bottom: -200 })
+			tl.set(activeImage, { zIndex: this.images.length - 0 }, isSecondImage ? '' : '<20%')
+			tl.to(activeImage, { bottom: 0 * this.OFFSET }, '<')
+			tl.to(
+				activeImage,
+				{
+					right: 0 * this.OFFSET,
+					scale: 1 - 0 * this.SCALE,
+					onComplete: () => {
+						activeImage.setAttribute('data-index', 0)
+					},
+				},
+				'<'
+			)
+
+			this.getNextSiblings(activeImage, '[data-index]').forEach((el, i) => {
+				const newIndex = i + 1
+				this.renderImage(el, newIndex)
+			})
+
+			this.getPreviousSiblings(activeImage, '[data-index]').forEach((el, i) => {
+				const newIndex = this.collection.length - i - 1
+				this.renderImage(el, newIndex)
+			})
+		},
 	},
 	computed: {
 		OFFSET() {
 			if (this.isMobile) return 40
-			return 80
+			return 90
 		},
 		SCALE() {
 			if (this.isMobile) return 0.1
-			return 0
+			return 0.06
 		},
 	},
 	mounted() {
 		this.checkMobile()
 		window.addEventListener('resize', this.resize)
+
+		this.images = this.selectAll('figure')
+		this.images.forEach((img, index) => this.renderImage(img, index, false))
 	},
 	destroyed() {
 		window.removeEventListener('resize', this.resize)
