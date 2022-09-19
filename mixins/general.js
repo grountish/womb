@@ -24,5 +24,27 @@ export default {
 		selectAll(selector){
 			return document.querySelectorAll(selector)
 		},
+		matches(elem, filter) {
+			if (elem && elem.nodeType === 1) {
+				if (!filter) return;
+				return elem.matches(filter);
+			}
+		},
+		getPreviousSiblings(elem, filter) {
+			const sibs = [];
+			while (elem = elem.previousSibling) {
+				if (this.matches(elem, filter)) sibs.push(elem);
+			}
+
+			return sibs;
+		},
+		getNextSiblings(elem, filter) {
+			const sibs = [];
+			while (elem = elem.nextSibling) {
+				if (this.matches(elem, filter)) sibs.push(elem);
+			}
+
+			return sibs;
+		},
 	},
 }
