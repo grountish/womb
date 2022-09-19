@@ -256,6 +256,7 @@ module.exports = {
 				primaryGreen: '#1C433A',
 				primaryBlue: '#DBE0FA',
 				ContainerGray: '#f4f4f4',
+				primaryYellow: '#FFCE00',
 				black: 'var(--black)',
 				white: 'var(--white)',
 				mint: 'var(--mint)',

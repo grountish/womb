@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div :class="[$store.state.mainTheme === 'black' ? 'bg-black text-white' : 'bg-primaryYellow', 'grid overflow-x-hidden   fadeIn']">
         <!-- section 1  -->
         <div class="flex flex-col h-screen">
             <div class="static" style="height: 70vh; overflow:hidden;">
