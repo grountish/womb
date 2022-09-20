@@ -1,5 +1,5 @@
 <template>
-    <footer class="w-full p-4">
+    <footer :class="[returnThemeClassFooter(true), 'w-full p-4']">
         <div class="flex justify-between w-full">
             <div><img :class="[$store.state.mainTheme === 'black' && 'invert', 'w-60']" :src="$store.state.settings[0].circleLogo" /></div>
             <div class="flex mt-auto">
@@ -21,9 +21,32 @@
 
 <script>
 export default {
+    data() {
+        return {
+            currentRoute: this.$router.history.current.name,
+        }
+    },
+    watch: {
+        async $route(to) {
+            this.currentRoute = to.name
+            console.log(to.name)
+        },
+    },
     methods: {
         moveTo() {
             window.scrollTo(0, 0)
+        },
+        returnThemeClassFooter(isBackground, color) {
+            const colors = {
+                index: 'primaryYellow',
+                about: 'pink',
+                partners: 'orange',
+            }
+            if (isBackground) {
+                return this.$store.state.mainTheme === 'black' ? 'bg-black text-white' : `bg-${colors[this.currentRoute]}`
+            } else {
+                return this.$store.state.mainTheme === 'black' ? 'text-white' : `text-${color}`
+            }
         },
     },
 }

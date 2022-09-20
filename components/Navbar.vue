@@ -26,16 +26,6 @@
             >
                 <div class="grid lg:flex">
                     <li>
-                        <NuxtLink to="/" class="relative inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 sm:underlinedWhite"> Home </NuxtLink>
-                    </li>
-
-                    <li>
-                        <NuxtLink to="/animations" class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"> Animations </NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900"> Gallery </NuxtLink>
-                    </li>
-                    <li>
                         <span
                             class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 cursor-pointer"
                             @click="$store.commit('SET_mainTheme', $store.state.mainTheme === 'black' ? 'white' : 'black')"
@@ -45,7 +35,7 @@
                     </li>
 
                     <li>
-                        <NuxtLink to="/animations" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
                             <div class="flex flex-col w-28 text-left">
                                 <span class="mr-auto text-white">PROJECTS</span>
                                 <h4 class="text-xxs text-gray-700">A vast range of projects</h4>
@@ -62,7 +52,7 @@
                         >
                     </li>
                     <li>
-                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+                        <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
                             <div class="flex flex-col text-left">
                                 <span class="mr-auto text-white">About</span>
                                 <h4 class="text-xxs text-gray-700 w-28">Learn more</h4>

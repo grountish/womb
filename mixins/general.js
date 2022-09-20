@@ -18,33 +18,40 @@ export default {
 		urlFor(source) {
 			return this.builder.image(source)
 		},
-		select(selector){
+		select(selector) {
 			return document.querySelector(selector)
 		},
-		selectAll(selector){
+		selectAll(selector) {
 			return document.querySelectorAll(selector)
 		},
 		matches(elem, filter) {
 			if (elem && elem.nodeType === 1) {
-				if (!filter) return;
-				return elem.matches(filter);
+				if (!filter) return
+				return elem.matches(filter)
 			}
 		},
 		getPreviousSiblings(elem, filter) {
-			const sibs = [];
-			while (elem = elem.previousSibling) {
-				if (this.matches(elem, filter)) sibs.push(elem);
+			const sibs = []
+			while ((elem = elem.previousSibling)) {
+				if (this.matches(elem, filter)) sibs.push(elem)
 			}
 
-			return sibs;
+			return sibs
 		},
 		getNextSiblings(elem, filter) {
-			const sibs = [];
-			while (elem = elem.nextSibling) {
-				if (this.matches(elem, filter)) sibs.push(elem);
+			const sibs = []
+			while ((elem = elem.nextSibling)) {
+				if (this.matches(elem, filter)) sibs.push(elem)
 			}
 
-			return sibs;
+			return sibs
+		},
+		returnThemeClass(isBackground, color) {
+			if (isBackground) {
+				return this.$store.state.mainTheme === 'black' ? 'bg-black text-white' : `bg-${color}`
+			} else {
+				return this.$store.state.mainTheme === 'black' ? 'text-white' : `text-${color}`
+			}
 		},
 	},
 }
