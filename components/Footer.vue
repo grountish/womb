@@ -16,6 +16,12 @@
             <h4 class="font-mono">WOMB PRODUCTION COMPANY 2022 ®</h4>
             <h4 class="font-mono">PRIVACY POLICY / FAQ / TERMS & CONDITIONS</h4>
         </div>
+        <span
+            class="
+                bg-primaryYellow bg-orange bg-pink bg-mint bg-green bg-teal bg-blue bg-yellow bg-darkyellow bg-purple bg-darkpurple bg-orange bg-brown
+                text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown
+            "
+        ></span>
     </footer>
 </template>
 
