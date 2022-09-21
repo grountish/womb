@@ -1,8 +1,13 @@
 <template>
-    <nav :class="[toggle ? 'bg-primaryGreen' : 'bg-transparent', 'fixed top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1  lg:px-10 xl:pr-12 Copernicus  sm:Haffer']">
+    <nav
+        :style="{
+            backdropFilter: toggle ? ' blur(10px)' : '',
+            filter: toggle && 'brightness(150%);',
+        }"
+        :class="['fixed top-0 z-10 flex flex-wrap items-center justify-between w-full px-8 py-1 lg:px-10 xl:pr-12']"
+    >
         <div class="flex items-center flex-shrink-0 mr-6 lg:ml-4">
             <NuxtLink to="/">
-                <!-- set the invert with the color theme -->
                 <SanityImage :asset-id="logo.asset._ref" :class="[$store.state.mainTheme === 'black' && 'invert', 'w-30 h-auto mx-3 my-4']" auto="format" format="webp" />
             </NuxtLink>
         </div>
@@ -12,7 +17,7 @@
                 <label for="overlay-input" @click="toggleNav" id="overlay-button" class="p-5 absolute right-8">
                     <span :class="[toggle ? 'white ' : 'black']"></span>
                 </label>
-                <title>Index</title>
+                <title>WOMB</title>
             </div>
         </div>
 
@@ -20,12 +25,12 @@
             <ul
                 id="link-list"
                 :class="[
-                    linkse ? ' opacity-100 ' : ' opacity-0 hidden  ',
+                    linkse ? 'opacity-100' : 'opacity-0 hidden',
                     'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
                 ]"
             >
                 <div class="grid lg:flex">
-                    <li>
+                    <li class="text-center md:text-left">
                         <span
                             class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 cursor-pointer"
                             @click="$store.commit('SET_mainTheme', $store.state.mainTheme === 'black' ? 'white' : 'black')"
@@ -34,29 +39,29 @@
                         </span>
                     </li>
 
-                    <li>
+                    <li class="text-center md:text-left">
                         <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
-                            <div class="flex flex-col w-28 text-left">
-                                <span class="mr-auto text-white">PROJECTS</span>
-                                <h4 class="text-xxs text-gray-700">A vast range of projects</h4>
+                            <div class="flex flex-col md:w-28 text-left">
+                                <span class="md:mr-auto text-white">PROJECTS</span>
+                                <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
                     </li>
-                    <li>
+                    <li class="text-center md:text-left">
                         <NuxtLink to="/partners" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
                             <div class="flex flex-col text-left">
-                                <span class="mr-auto text-white">Partners</span>
-                                <h4 class="text-xxs text-gray-700 w-28">Our diverse</h4>
-                                <h4 class="text-xxs text-gray-700">network of collaborators</h4>
+                                <span class="md:mr-auto text-white">Partners</span>
+                                <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
+                                <h4 class="text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
                             </div></NuxtLink
                         >
                     </li>
-                    <li>
+                    <li class="text-center md:text-left">
                         <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
                             <div class="flex flex-col text-left">
-                                <span class="mr-auto text-white">About</span>
-                                <h4 class="text-xxs text-gray-700 w-28">Learn more</h4>
-                                <h4 class="text-xxs text-gray-700">about our process</h4>
+                                <span class="md:mr-auto text-white">About</span>
+                                <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
+                                <h4 class="text-xxs hidden md:flex text-gray-700">about our process</h4>
                             </div>
                         </NuxtLink>
                     </li>
@@ -218,7 +223,7 @@ nav * {
     height: 5px;
     width: 35px;
 
-    background-color: #002a26;
+    background-color: #000;
 
     position: relative;
     display: block;
@@ -230,7 +235,7 @@ nav * {
     width: 35px;
     height: 5px;
 
-    background-color: #002a26;
+    background-color: #000;
 
     position: absolute;
     content: '';

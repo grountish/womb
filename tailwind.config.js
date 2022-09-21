@@ -251,6 +251,7 @@ module.exports = {
 			fontSize: {
 				'4_5xl': '2.7rem',
 				'8xl': '4.8rem',
+				'9xl': '5.125rem',
 			},
 			colors: {
 				primaryGreen: '#1C433A',
@@ -263,6 +264,7 @@ module.exports = {
 				green: 'var(--green)',
 				teal: 'var(--teal)',
 				blue: 'var(--blue)',
+				darkblue: 'var(--darkblue)',
 				yellow: 'var(--yellow)',
 				darkyellow: 'var(--darkyellow)',
 				pink: 'var(--pink)',
@@ -270,6 +272,7 @@ module.exports = {
 				darkpurple: 'var(--darkpurple)',
 				orange: 'var(--orange)',
 				brown: 'var(--brown)',
+				lime: 'var(--lime)',
 			},
 			screens: {
 				tablet: '640px',
@@ -306,6 +309,7 @@ module.exports = {
 			'bg-darkpurple',
 			'bg-orange',
 			'bg-brown',
+			'bg-darkblue',
 			'text-primaryYellow',
 			'text-orange',
 			'text-pink',
@@ -319,6 +323,7 @@ module.exports = {
 			'text-darkpurple',
 			'text-orange',
 			'text-brown',
+			'text-darkblue',
 		],
 	},
 }

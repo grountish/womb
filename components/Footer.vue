@@ -1,3 +1,4 @@
+// eslin
 <template>
     <footer :class="[returnThemeClassFooter(true), 'w-full p-4']">
         <div class="flex justify-between w-full">
@@ -19,7 +20,7 @@
         <span
             class="
                 bg-primaryYellow bg-orange bg-pink bg-mint bg-green bg-teal bg-blue bg-yellow bg-darkyellow bg-purple bg-darkpurple bg-orange bg-brown
-                text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown
+                text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown bg-darkblue text-darkblue
             "
         ></span>
     </footer>
@@ -47,6 +48,7 @@ export default {
                 index: 'primaryYellow',
                 about: 'pink',
                 partners: 'orange',
+                'projects-id': 'lime',
             }
             if (isBackground) {
                 return this.$store.state.mainTheme === 'black' ? 'bg-black text-white' : `bg-${colors[this.currentRoute]}`
@@ -59,4 +61,34 @@ export default {
 </script>
 
 <style>
+/* purge css 
+			'bg-primaryYellow',
+			'bg-orange',
+			'bg-pink',
+			'bg-mint',
+			'bg-green',
+			'bg-teal',
+			'bg-blue',
+			'bg-yellow',
+			'bg-darkyellow',
+			'bg-purple',
+			'bg-darkpurple',
+			'bg-orange',
+			'bg-brown',
+			'bg-darkblue',
+			'text-primaryYellow',
+			'text-orange',
+			'text-pink',
+			'text-mint',
+			'text-green',
+			'text-teal',
+			'text-blue',
+			'text-yellow',
+			'text-darkyellow',
+			'text-purple',
+			'text-darkpurple',
+			'text-orange',
+			'text-brown',
+			'text-darkblue',
+*/
 </style>

@@ -1,11 +1,11 @@
 <template>
-    <div class="min-h-screen">
+    <div :class="[returnThemeClass(true, 'lime'), 'min-h-screen']">
         <div v-if="post.video" class="w-full">
-            <video class="w-full"  :src="post.video.url" muted autoplay loop></video>
+            <video class="w-full" :src="post.video.url" muted autoplay loop></video>
         </div>
         <div class="p-4 space-y-4">
-            <h1 class="text-5xl">{{ post.title }}</h1>
-            <div class="w-3/4">
+            <h1 class="text-9xl helvetica-bold">{{ post.title }}</h1>
+            <div class="w-3/4 sans-serif text-xs">
                 <SanityContent :blocks="post.subtitle" />
             </div>
             <div class="flex justify-between">
@@ -18,20 +18,20 @@
                             :style="{ left: 5 + i * 10 + 'px' }"
                         ></div>
                     </div>
-                    <h4 v-for="category in post.categories" :key="category.id" class="font-mono text-xs uppercase">
+                    <h4 v-for="category in post.categories" :key="category.id" :class="[returnThemeClass(false, 'white'), 'font-mono text-xs uppercase']">
                         {{ category.title }}
                     </h4>
                 </div>
                 <div>
-                    <h4>22.03.2021</h4>
+                    <h4 :class="[returnThemeClass(false, 'white'), 'font-mono text-xs uppercase']">22.03.2021</h4>
                 </div>
             </div>
-            <div class="grid grid-cols-2" >
-                <div class="w-1/2">
+            <div class="grid grid-cols-2">
+                <div :class="[returnThemeClass(false, 'darkblue'), 'md:pr-10']">
                     <SanityContent :blocks="post.information" />
                 </div>
                 <div v-if="post.mainSlider">
-                    <div 
+                    <div
                         class="flex h-120 bg-cover bg-center rounded-3xl"
                         :style="{
                             backgroundImage: 'url(' + post.mainSlider[index].asset.url + ')',
@@ -39,7 +39,7 @@
                     ></div>
                 </div>
             </div>
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 sans-serif text-xs">
                 <div>
                     <h4>Text by {{ post.author }}</h4>
                 </div>
@@ -49,10 +49,10 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <h1 class="text-5xl font-black p-20 text-center">
+                <h1 :class="[returnThemeClass(false, 'yellow'), 'heading-3 py-20  text-center']">
                     {{ post.quote }}
                 </h1>
-                <h4 class="m-auto">
+                <h4 class="m-auto sans-serif text-xs">
                     {{ post.quoteAuthor }}
                 </h4>
             </div>
@@ -72,22 +72,13 @@
                 </div>
                 <div class="flex w-full">
                     <NuxtLink v-for="project in similarProjects" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
-                        <div class="flex h-120 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
+                        <div class="flex h-80 w-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
                             <div
                                 v-for="(category, i) in project.categories"
                                 :key="category.id"
                                 class="absolute top-4 border border-white h-3 w-3 bg-red-500 rounded-full"
                                 :style="{ left: 5 + i * 10 + 'px' }"
                             ></div>
-                        </div>
-                        <div class="flex flex-col space-y-3">
-                            <h1 class="font-black py-4 text-xl leading-none text-left">{{ project.title }}</h1>
-                            <div class="flex space-x-3">
-                                <h4 v-for="category in project.categories" :key="category.id" class="font-mono text-xs uppercase">
-                                    {{ category.title }}
-                                </h4>
-                            </div>
-                            <SanityContent :blocks="project.information" />
                         </div>
                     </NuxtLink>
                 </div>
@@ -142,4 +133,8 @@ export default {
  
 
 <style>
+.sans-serif,
+.sans-serif * {
+    font-family: sans-serif;
+}
 </style>
