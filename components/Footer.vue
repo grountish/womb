@@ -19,7 +19,7 @@
         </div>
         <span
             class="
-                bg-primaryYellow bg-orange bg-pink bg-mint bg-green bg-teal bg-blue bg-yellow bg-darkyellow bg-purple bg-darkpurple bg-orange bg-brown
+                bg-primaryYellow bg-orange bg-pink bg-mint bg-green bg-teal bg-blue bg-yellow bg-darkyellow bg-purple bg-darkpurple bg-orange bg-brown bg-lime
                 text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown bg-darkblue text-darkblue
             "
         ></span>

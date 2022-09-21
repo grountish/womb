@@ -17,7 +17,7 @@
                 <div v-for="article in page.section2.collection" :key="article.id" class="flex-1 flex-col m-4 fadeIn">
                     <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(article.image.asset._ref) + ')' }"></div>
                     <div class="flex flex-col">
-                        <h1 class="font-black p-4 text-4xl leading-none text-justify">{{ article.header }}</h1>
+                        <h1 :class="['font-black p-4 text-4xl leading-none text-justify', returnThemeClass(false, 'brown')]">{{ article.header }}</h1>
                         <p class="">{{ article.text }}</p>
                     </div>
                 </div>
@@ -25,8 +25,7 @@
         </div>
         <!-- section 3 -->
         <div class="flex flex-col px-4 py-20">
-            <h4 class="text-xs uppercase font-mono flex mr-auto items-center"><span class="text-3xl m-auto pb-1">● </span> {{ page.section3.blocks.topHeader.text }}</h4>
-            <h1 class="heading-2">
+            <h1 :class="['heading-2', returnThemeClass(false, 'blue')]">
                 {{ page.section3.blocks.header }}
             </h1>
             <div class="flex w-full">
@@ -40,9 +39,9 @@
                         ></div>
                     </div>
                     <div class="flex flex-col space-y-3">
-                        <h1 class="font-black py-4 text-xl leading-none text-left">{{ project.title }}</h1>
+                        <h1 :class="['font-black py-4 text-xl leading-none text-left', returnThemeClass(false, 'brown')]">{{ project.title }}</h1>
                         <div class="flex space-x-3">
-                            <h4 v-for="category in project.categories" :key="category.id" class="font-mono text-xs uppercase">
+                            <h4 v-for="category in project.categories" :key="category.id" :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime')]">
                                 {{ category.title }}
                             </h4>
                         </div>
@@ -56,12 +55,12 @@
             <div class="flex-1 flex-col my-4 fadeIn">
                 <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(page.section4.blocks.articles.image.asset._ref) + ')' }"></div>
                 <div class="flex flex-col">
-                    <h1 class="font-black py-4 text-4xl leading-none text-justify">{{ page.section4.blocks.articles.header }}</h1>
+                    <h1 :class="['py-4 text-4xl leading-none text-justify', returnThemeClass(false, 'brown')]">{{ page.section4.blocks.articles.header }}</h1>
                     <p class="">{{ page.section4.blocks.articles.text }}</p>
                 </div>
             </div>
         </div>
-        <h1 class="heading-2 text-center">
+        <h1 :class="['heading-2 text-center', returnThemeClass(false, 'blue')]">
             {{ page.section4.blocks.subHeader }}
         </h1>
     </div>

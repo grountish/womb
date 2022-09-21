@@ -26,13 +26,13 @@
                 id="link-list"
                 :class="[
                     linkse ? 'opacity-100' : 'opacity-0 hidden',
-                    'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
+                    'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center md:uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
                 ]"
             >
                 <div class="grid lg:flex">
                     <li class="text-center md:text-left">
                         <span
-                            class="inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green-900 cursor-pointer"
+                            class="hidden md:inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green cursor-pointer"
                             @click="$store.commit('SET_mainTheme', $store.state.mainTheme === 'black' ? 'white' : 'black')"
                         >
                             🌈
@@ -40,26 +40,26 @@
                     </li>
 
                     <li class="text-center md:text-left">
-                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 text-left">
-                                <span class="md:mr-auto text-white">PROJECTS</span>
+                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Projects</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
                     </li>
                     <li class="text-center md:text-left">
-                        <NuxtLink to="/partners" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+                        <NuxtLink to="/partners" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-white">Partners</span>
+                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Partners</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
                             </div></NuxtLink
                         >
                     </li>
                     <li class="text-center md:text-left">
-                        <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green-900">
+                        <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-white">About</span>
+                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">About</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">about our process</h4>
                             </div>
@@ -72,14 +72,10 @@
 </template>
 
 <script>
-import ButtonBase from './ButtonBase.vue'
 import { groq } from '@nuxtjs/sanity'
 const query = groq`*[_type=="settings"]`
 
 export default {
-    components: {
-        ButtonBase,
-    },
     data: () => ({
         logo: '',
         toggle: false,
@@ -96,9 +92,10 @@ export default {
             this.toggle = !this.toggle
             this.linkse
                 ? (this.linkse = !this.linkse)
-                : setTimeout(() => {
-                      this.linkse = !this.linkse
-                  }, 300)
+                // : setTimeout(() => {
+                //       this.linkse = !this.linkse
+                //   }, 3)
+                :  this.linkse = !this.linkse                     
         },
         clickAndClose() {
             let lis = document.getElementsByTagName('li')
@@ -124,12 +121,6 @@ export default {
 }
 .text-xxs {
     font-size: 0.5rem;
-}
-#nav-content {
-    transition: all 0.31s;
-}
-#nav-content ul {
-    transition: all 0.11s;
 }
 
 .logo {
@@ -159,19 +150,23 @@ export default {
 }
 
 nav {
-    transition: all 0.5s;
+    transition: all 0.08s;
     position: fixed;
     top: 0;
 }
-nav * {
-    font-family: sans-serif;
+
+@media (max-width: 768px) {
+    nav * {
+        font-family: 'Helveticabold';
+    }
+}
+@media (min-width: 768px) {
+    nav * {
+        font-family: sans-serif;
+    }
 }
 .transparent {
     background: white;
-}
-
-.translucido {
-    background: rgba(255, 255, 255, 0.87);
 }
 
 @keyframes bugfix {
@@ -245,6 +240,10 @@ nav * {
     top: -10px;
     visibility: visible;
 }
+#overlay-button span:after {
+    top: 10px;
+    visibility: visible;
+}
 
 #overlay-button span:before,
 #overlay-button span:after {
@@ -270,11 +269,11 @@ input[type='checkbox']:checked ~ #overlay-button span {
     background: transparent;
 }
 input[type='checkbox']:checked ~ #overlay-button span:before {
-    transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(7px, 5px);
     opacity: 1;
 }
 input[type='checkbox']:checked ~ #overlay-button span:after {
-    transform: rotate(-45deg) translate(0px, 0px);
+    transform: rotate(-45deg) translate(9px, -9px);
 }
 .text-nav {
     font-size: 2.74rem;
