@@ -23,6 +23,7 @@ import { groq } from '@nuxtjs/sanity'
 const query = groq`*[_type=="gallery"][0]`
 import general from '../mixins/general'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default {
 	mixins: [general],
@@ -34,6 +35,7 @@ export default {
 		return {
 			isMobile: false,
 			activeProject: 0,
+			direction: 0,
 		}
 	},
 	methods: {
@@ -42,17 +44,51 @@ export default {
 		},
 		renderImage(el, index, setIndex = true) {
 			gsap.killTweensOf(el)
+			const isFirst = el.dataset.index == 0
 
-			gsap.to(el, {
-				bottom: index * this.OFFSET,
-				right: index * this.OFFSET,
-				scale: 1 - index * this.SCALE,
-				zIndex: this.collection.length - index,
-				ease: 'power4.out',
-				duration: 0.8,
-				onComplete: () => {
-					if (setIndex) el.setAttribute('data-index', index)
-				},
+			const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 0.8 } })
+			if (isFirst && this.direction === 1) {
+				tl.to(el, { bottom: -250 })
+				tl.to(el, { zIndex: this.collection.length - index }, '<')
+
+				tl.to(
+					el,
+					{
+						bottom: index * this.OFFSET,
+						right: index * this.OFFSET,
+						scale: 1 - index * this.SCALE,
+						onComplete: () => {
+							if (setIndex) el.setAttribute('data-index', index)
+						},
+					},
+					'<20%'
+				)
+			} else {
+				tl.to(el, {
+					bottom: index * this.OFFSET,
+					right: index * this.OFFSET,
+					scale: 1 - index * this.SCALE,
+					zIndex: this.collection.length - index,
+					onComplete: () => {
+						if (setIndex) el.setAttribute('data-index', index)
+					},
+				})
+			}
+		},
+		initScrollTrigger() {
+			this.headlines = this.selectAll('h2')
+
+			this.headlines.forEach((headline, i) => {
+				this.st = ScrollTrigger.create({
+					trigger: headline,
+					start: 'top top',
+					onToggle: ({ isActive, direction }) => {
+						this.direction = direction
+						if (isActive) this.activeProject = i
+					},
+				})
+
+				if (!this.isMobile) this.st.disable()
 			})
 		},
 		checkMobile() {
@@ -60,6 +96,8 @@ export default {
 		},
 		resize() {
 			this.checkMobile()
+			ScrollTrigger.getAll().forEach((st) => st.kill())
+			this.initScrollTrigger()
 		},
 	},
 	watch: {
@@ -108,11 +146,15 @@ export default {
 		},
 	},
 	mounted() {
+		gsap.registerPlugin(ScrollTrigger)
+
 		this.checkMobile()
 		window.addEventListener('resize', this.resize)
 
 		this.images = this.selectAll('figure')
-		this.images.forEach((img, index) => this.renderImage(img, index, false))
+		this.images.forEach((img, index) => this.renderImage(img, index, false, true))
+
+		this.initScrollTrigger()
 	},
 	destroyed() {
 		window.removeEventListener('resize', this.resize)
