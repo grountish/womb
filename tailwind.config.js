@@ -275,6 +275,7 @@ module.exports = {
 				lime: 'var(--lime)',
 				cyan: 'var(--cyan)',
 				magenta: 'var(--magenta)',
+				darkgray: 'var(--darkgray)',
 			},
 			screens: {
 				tablet: '640px',
