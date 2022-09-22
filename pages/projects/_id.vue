@@ -1,22 +1,18 @@
 <template>
     <div :class="[returnThemeClass(true, 'lime'), 'min-h-screen']">
-        <div v-if="post.video" class="w-full">
+        <!-- <div v-if="post.video" class="w-full">
             <video class="w-full" :src="post.video.url" muted autoplay loop></video>
-        </div>
+        </div> -->
+        <MediaBase :src="post.video.url" />
         <div class="p-4 space-y-4">
             <h1 class="text-9xl helvetica-bold">{{ post.title }}</h1>
             <div class="w-3/4 sans-serif text-xs">
                 <SanityContent :blocks="post.subtitle" />
             </div>
-            <div class="flex justify-between">
-                <div class="flex space-x-3 items-center">
-                    <div class="flex relative pl-10 pb-3">
-                        <div
-                            v-for="(category, i) in post.categories"
-                            :key="category.id"
-                            class="absolute border border-white h-3 w-3 bg-red-500 rounded-full"
-                            :style="{ left: 5 + i * 10 + 'px' }"
-                        ></div>
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-1 items-center h-10">
+                    <div class="flex relative pl-10 pb-12">
+                        <CategoryComponent v-for="(category, i) in post.categories" :key="category.id" :title="category.title" :i="i" />
                     </div>
                     <h4 v-for="category in post.categories" :key="category.id" :class="[returnThemeClass(false, 'white'), 'font-mono text-xs uppercase']">
                         {{ category.title }}
@@ -67,18 +63,21 @@
                 </div>
             </div>
             <div class="flex w-full flex-col">
-                <div class="flex justify-center m-auto py-12">
+                <div class="flex justify-center xl:justify-between m-auto py-12">
                     <h1 class="text-center px-6 py-4 rounded-full bg-white text-black">SIMILAR</h1>
                 </div>
                 <div class="flex w-full">
                     <NuxtLink v-for="project in similarProjects" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
-                        <div class="flex h-80 w-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
-                            <div
+                        <div class="flex h-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
+                            <!-- <div
                                 v-for="(category, i) in project.categories"
                                 :key="category.id"
                                 class="absolute top-4 border border-white h-3 w-3 bg-red-500 rounded-full"
                                 :style="{ left: 5 + i * 10 + 'px' }"
-                            ></div>
+                            ></div> -->
+                            <CategoryComponent v-for="(category, i) in project.categories" :key="category.id" :title="category.title" :i="i" />
+
+                            <!-- {{ category.title }} -->
                         </div>
                     </NuxtLink>
                 </div>
@@ -95,7 +94,7 @@ export default {
 
     async asyncData({ $sanity, route }) {
         const page = await $sanity.fetch(groq`
-    *[slug.current=="${route.params.id}"]{...,categories[]->{...,"similar":*[_type=="project" && references(^._id)]},
+    *[slug.current=="${route.params.id}"]{...,categories[]->{...,"similar":*[_type=="project" && references(^._id)]{...,categories[]->}},
     "video": video.asset->,mainSlider[]{asset->{url}}}`)
 
         let post = page[0]

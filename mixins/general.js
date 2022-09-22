@@ -53,5 +53,21 @@ export default {
 				return this.$store.state.mainTheme === 'black' ? 'text-white' : `text-${color}`
 			}
 		},
+		returnCategoryClass(category) {
+			switch (category) {
+				case 'creative direction':
+					return 'bg-green'
+				case 'photography':
+					return 'bg-yellow'
+				case 'sound':
+					return 'bg-blue'
+				case 'direction':
+					return 'bg-cyan'
+				case 'post-production':
+					return 'bg-magenta'
+				default:
+					return 'bg-black'
+			}
+		},
 	},
 }

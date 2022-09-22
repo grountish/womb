@@ -17,12 +17,15 @@
             <h4 class="font-mono">WOMB PRODUCTION COMPANY 2022 ®</h4>
             <h4 class="font-mono">PRIVACY POLICY / FAQ / TERMS & CONDITIONS</h4>
         </div>
-        <span
+        <!-- <span
             class="
                 bg-primaryYellow bg-orange bg-pink bg-mint bg-green bg-teal bg-blue bg-yellow bg-darkyellow bg-purple bg-darkpurple bg-orange bg-brown bg-lime
-                text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown bg-darkblue text-darkblue
+                text-primaryYellow text-orange text-pink text-mint text-green text-teal text-blue text-yellow text-darkyellow text-purple text-darkpurple text-orange text-brown
+                bg-darkblue
+                text-darkblue
+                bg-cyan bg-magenta
             "
-        ></span>
+        ></span> -->
     </footer>
 </template>
 
@@ -61,34 +64,36 @@ export default {
 </script>
 
 <style>
-/* purge css 
-			'bg-primaryYellow',
-			'bg-orange',
-			'bg-pink',
-			'bg-mint',
-			'bg-green',
-			'bg-teal',
-			'bg-blue',
-			'bg-yellow',
-			'bg-darkyellow',
-			'bg-purple',
-			'bg-darkpurple',
-			'bg-orange',
-			'bg-brown',
-			'bg-darkblue',
-			'text-primaryYellow',
-			'text-orange',
-			'text-pink',
-			'text-mint',
-			'text-green',
-			'text-teal',
-			'text-blue',
-			'text-yellow',
-			'text-darkyellow',
-			'text-purple',
-			'text-darkpurple',
-			'text-orange',
-			'text-brown',
-			'text-darkblue',
+/*
+    bg-primaryYellow
+    bg-orange
+    bg-pink
+    bg-mint
+    bg-green
+    bg-teal
+    bg-blue 
+    bg-yellow
+    bg-darkyellow 
+    bg-purple
+    bg-darkpurple
+    bg-orange 
+    bg-brown
+    bg-lime
+    text-primaryYellow
+    text-orange
+    text-pink
+    text-mint
+    text-green
+    text-teal
+    text-blue
+    text-yellow
+    text-darkyellow
+    text-purple
+    text-darkpurple
+    text-orange
+    text-brown
+    bg-darkblue
+    text-darkblue
+    bg-cyan bg-magenta
 */
 </style>

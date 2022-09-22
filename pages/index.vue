@@ -1,7 +1,7 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow')]">
         <!-- section 1  -->
-        <div class="flex flex-col h-screen">
+        <div class="flex flex-col">
             <div class="static" style="height: 70vh; overflow: hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
                     <source :src="page.section1.blocks.video" type="video/mp4" />
@@ -13,8 +13,8 @@
         </div>
         <!-- section 2 -->
         <div class="flex flex-col px-4 py-2">
-            <div class="flex w-full">
-                <div v-for="article in page.section2.collection" :key="article.id" class="flex-1 flex-col m-4 fadeIn">
+            <div class="flex w-full space-x-6">
+                <div v-for="article in page.section2.collection" :key="article.id" class="flex-1 flex-col fadeIn">
                     <div class="flex h-120 bg-cover bg-center rounded-3xl" :style="{ backgroundImage: 'url(' + urlFor(article.image.asset._ref) + ')' }"></div>
                     <div class="flex flex-col">
                         <h1 :class="['font-black p-4 text-4xl leading-none text-justify', returnThemeClass(false, 'brown')]">{{ article.header }}</h1>
@@ -30,13 +30,14 @@
             </h1>
             <div class="flex w-full">
                 <NuxtLink v-for="project in page.section3.projects" :key="project.id" :to="'projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
-                    <div class="flex h-120 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
-                        <div
-                            v-for="(category, i) in project.categories"
-                            :key="category.id"
-                            class="absolute top-4 border border-white h-3 w-3 bg-red-500 rounded-full"
-                            :style="{ left: 5 + i * 10 + 'px' }"
-                        ></div>
+                    <div
+                        class="flex h-120 bg-cover bg-center rounded-3xl relative"
+                        :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }"
+                    >
+                        <video playsinline autoplay muted loop class="rounded-3xl h-full">
+                            <source :src="project.mainVideo" type="video/mp4" />
+                        </video>
+                        <CategoryComponent v-for="(category, i) in project.categories" :key="category.id" :title="category.title" :i="i" />
                     </div>
                     <div class="flex flex-col space-y-3">
                         <h1 :class="['font-black py-4 text-xl leading-none text-left', returnThemeClass(false, 'brown')]">{{ project.title }}</h1>
@@ -72,7 +73,7 @@ import { groq } from '@nuxtjs/sanity'
 const query = groq`{
 "section1":*[_type=="home"][0]{blocks[0]{...,"video":media.video.asset->url}},
 "section2":*[_type=="home"][0]{"collection":blocks[1].collection},
-"section3":*[_type=="home"][0]{blocks[2]}{...,"projects": blocks.projects[]->{...,categories[]->}},
+"section3":*[_type=="home"][0]{blocks[2]}{...,"projects": blocks.projects[]->{...,categories[]->,"mainVideo":mainMedia.video.asset->url}},
 "section4":*[_type=="home"][0]{blocks[3]}}
 `
 
@@ -87,11 +88,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.index {
-    cursor: initial !important;
-}
-
+<style >
 video {
     object-fit: cover;
 }
