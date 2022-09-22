@@ -273,6 +273,7 @@ module.exports = {
 				orange: 'var(--orange)',
 				brown: 'var(--brown)',
 				lime: 'var(--lime)',
+				darkgray: 'var(--darkgray)',
 			},
 			screens: {
 				tablet: '640px',
