@@ -12,17 +12,17 @@
             </div>
         </div>
         <!-- section 2 -->
-        <div class="flex flex-col px-4 py-2">
-            <div class="flex w-full space-x-6">
-                <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
-            </div>
+
+        <div class="parent2 w-full px-4 py-2">
+            <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
         </div>
+
         <!-- section 3 -->
         <div class="flex flex-col px-4 py-20">
             <h1 :class="['heading-2', returnThemeClass(false, 'blue')]">
                 {{ page.section3.blocks.header }}
             </h1>
-            <div class="flex w-full">
+            <div class="parent w-full">
                 <ProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project" showCategories />
             </div>
         </div>
@@ -59,9 +59,25 @@ export default {
 }
 </script>
 
-<style >
+<style lang="postcss">
 video {
     object-fit: cover;
+}
+.parent,
+.parent2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    & > a {
+        margin: 10px;
+    }
+}
+
+.parent a {
+    flex: 1 1 380px;
+}
+.parent2 a {
+    flex: 1 1 490px;
 }
 </style>
 

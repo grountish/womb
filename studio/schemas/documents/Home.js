@@ -64,11 +64,6 @@ export default {
 					type: 'object',
 					fields: [
 						{
-							name: 'topHeader',
-							title: 'Top Header',
-							type: 'button',
-						},
-						{
 							name: 'header',
 							title: 'Header',
 							type: 'string',
@@ -106,28 +101,6 @@ export default {
 								{
 									type: 'reference',
 									to: [{ type: 'project' }],
-								},
-							],
-						},
-						{
-							name: 'articles',
-							title: 'Article',
-							type: 'object',
-							fields: [
-								{
-									name: 'image',
-									title: 'Image',
-									type: 'image',
-								},
-								{
-									name: 'header',
-									title: 'Header',
-									type: 'text',
-								},
-								{
-									name: 'text',
-									title: 'Text',
-									type: 'text',
 								},
 							],
 						},
