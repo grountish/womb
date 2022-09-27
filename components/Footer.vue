@@ -52,6 +52,7 @@ export default {
                 about: 'pink',
                 partners: 'orange',
                 'projects-id': 'lime',
+                'gallery': 'purple',
             }
             if (isBackground) {
                 return this.$store.state.mainTheme === 'black' ? 'bg-black text-white' : `bg-${colors[this.currentRoute]}`

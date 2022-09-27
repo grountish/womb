@@ -11,9 +11,9 @@
         <div class="flex flex-col space-y-3">
             <h1 :class="['font-black py-4 text-xl leading-none text-left', returnThemeClass(false, 'brown')]">{{ project.title }}</h1>
             <div class="flex space-x-3">
-                <div v-if="showCategories">
-                    <h4 v-for="category in project.categories" :key="category.id" :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime')]">
-                        {{ category.title }}
+                <div v-if="showCategories" class="flex">
+                    <h4 v-for="(category, i) in project.categories" :key="category.id" :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime')]">
+                        <span v-if="i > 0">,</span> {{ category.title }}
                     </h4>
                 </div>
             </div>
